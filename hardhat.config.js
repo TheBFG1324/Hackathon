@@ -14,6 +14,10 @@ let MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL
 let SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL
 
 // Ensure one of the RPC endpoints has been set
+
+console.log("HEREEEEEEEEEEEEEEE\n")
+console.log(MUMBAI_RPC_URL)
+
 if (!isTestEnvironment && !MAINNET_RPC_URL && !POLYGON_MAINNET_RPC_URL && !MUMBAI_RPC_URL && !SEPOLIA_RPC_URL) {
   throw Error(
     "One of the following environment variables must be set: MAINNET_RPC_URL, SEPOLIA_RPC_URL, POLYGON_MAINNET_RPC_URL, or MUMBAI_RPC_URL"
@@ -77,7 +81,7 @@ module.exports = {
       allowUnlimitedContractSize: true,
       hardfork: "merge",
       forking: {
-        url: MAINNET_RPC_URL ?? POLYGON_MAINNET_RPC_URL ?? MUMBAI_RPC_URL ?? SEPOLIA_RPC_URL ?? "",
+        url: MAINNET_RPC_URL ?? POLYGON_MAINNET_RPC_URL ?? process.env.MUMBAI_RPC_URL ?? SEPOLIA_RPC_URL ?? "",
         blockNumber: FORKING_BLOCK_NUMBER,
         enabled: isTestEnvironment === false,
       },
